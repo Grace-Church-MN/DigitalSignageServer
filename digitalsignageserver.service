@@ -3,8 +3,7 @@ Description=Digital Signage Server Service
 After=network.target
 
 [Service]
-WorkingDirectory=/var/local/DigitalSignageServer
-ExecStart=/usr/bin/node index.js
+ExecStart=/usr/bin/node /var/local/DigitalSignageServer/index.js
 Restart=on-failure
 User=root
 Type=simple
