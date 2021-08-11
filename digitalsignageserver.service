@@ -1,0 +1,13 @@
+[Unit]
+Description=Digital Signage Server Service
+After=network.target
+
+[Service]
+WorkingDirectory=/var/local/DigitalSignageServer
+ExecStart=/usr/bin/node index.js
+Restart=on-failure
+User=root
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
