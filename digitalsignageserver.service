@@ -3,10 +3,11 @@ Description=Digital Signage Server Service
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/node /var/local/DigitalSignageServer/index.js
-Restart=on-failure
-User=root
-Type=simple
+ExecStart=/home/pi/.nvm/versions/node/v14.17.5/bin/node /home/pi/DigitalSignageServer/index.js
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
 
 [Install]
 WantedBy=multi-user.target
