@@ -23,7 +23,7 @@ const requestListener = function(req, res) {
 		} else if (data == 'power_and_vol') {
 			console.log('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
 			exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
-			await sleep(175);
+			await sleep(5000);
 			for (let i = 0; i < 29; i++) {
 				exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_VOLUMEUP');
 				await sleep(200);
