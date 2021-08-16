@@ -24,7 +24,7 @@ const requestListener = function(req, res) {
 			console.log('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
 			exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
 			await sleep(10000);
-			for (let i = 0; i < 29; i++) {
+			for (let i = 0; i < 30; i++) {
 				exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_VOLUMEUP');
 				await sleep(200);
 			}
