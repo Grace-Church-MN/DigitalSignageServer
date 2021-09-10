@@ -17,6 +17,8 @@ const requestListener = function(req, res) {
 		if (data == 'power') {
 			console.log('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
 			exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
+			await sleep(200);
+			exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
 			res.setHeader("Content-Type", "application/json");
 			res.writeHead(200);
 			res.end(`{"message": "success"}`);
