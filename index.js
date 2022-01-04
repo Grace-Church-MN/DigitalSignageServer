@@ -22,6 +22,12 @@ const requestListener = function(req, res) {
 			res.setHeader("Content-Type", "application/json");
 			res.writeHead(200);
 			res.end(`{"message": "success"}`);
+		} else if (data == 'power_sharp') {
+			console.log('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
+			exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
+			res.setHeader("Content-Type", "application/json");
+			res.writeHead(200);
+			res.end(`{"message": "success"}`);
 		} else if (data == 'power_and_vol') {
 			console.log('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
 			exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
