@@ -29,6 +29,9 @@ const requestListener = function(req, res) {
 			console.log('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
 			exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
 			res.setHeader("Content-Type", "application/json");
+			res.setHeader('Access-Control-Allow-Origin', '*');
+			res.setHeader('Access-Control-Allow-Methods', 'post');
+			res.setHeader('Access-Control-Max-Age', 5000);
 			res.writeHead(200);
 			res.end(`{"message": "success"}`);
 		} else if (data == 'power_and_vol') {
@@ -40,6 +43,9 @@ const requestListener = function(req, res) {
 				await sleep(200);
 			}
 			res.setHeader("Content-Type", "application/json");
+			res.setHeader('Access-Control-Allow-Origin', '*');
+			res.setHeader('Access-Control-Allow-Methods', 'post');
+			res.setHeader('Access-Control-Max-Age', 5000);
 			res.writeHead(200);
 			res.end(`{"message": "success"}`);
 		} else if (data == 'vol_up') {
@@ -57,22 +63,34 @@ const requestListener = function(req, res) {
 				await sleep(200);
 			}
 			res.setHeader("Content-Type", "application/json");
+			res.setHeader('Access-Control-Allow-Origin', '*');
+			res.setHeader('Access-Control-Allow-Methods', 'post');
+			res.setHeader('Access-Control-Max-Age', 5000);
 			res.writeHead(200);
 			res.end(`{"message": "success"}`);
 		} else if (data == 'vol_down') {
 			console.log('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO VOL_DWN');
 			exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO VOL_DWN');
 			res.setHeader("Content-Type", "application/json");
+			res.setHeader('Access-Control-Allow-Origin', '*');
+			res.setHeader('Access-Control-Allow-Methods', 'post');
+			res.setHeader('Access-Control-Max-Age', 5000);
 			res.writeHead(200);
 			res.end(`{"message": "success"}`);
 		} else if (data == 'mute') {
 			console.log('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_MUTE');
 			exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_MUTE');
 			res.setHeader("Content-Type", "application/json");
+			res.setHeader('Access-Control-Allow-Origin', '*');
+			res.setHeader('Access-Control-Allow-Methods', 'post');
+			res.setHeader('Access-Control-Max-Age', 5000);
 			res.writeHead(200);
 			res.end(`{"message": "success"}`);
 		} else {
 			res.setHeader("Content-Type", "application/json");
+			res.setHeader('Access-Control-Allow-Origin', '*');
+			res.setHeader('Access-Control-Allow-Methods', 'post');
+			res.setHeader('Access-Control-Max-Age', 5000);
 			res.writeHead(404);
 			res.end(`{"message": "Error path does not exist."}`);
 		}
