@@ -1,5 +1,4 @@
 const http = require("http");
-const cors = require("cors");
 const {
 	exec
 } = require('child_process');
