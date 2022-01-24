@@ -20,6 +20,9 @@ const requestListener = function(req, res) {
 			await sleep(200);
 			exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
 			res.setHeader("Content-Type", "application/json");
+			res.setHeader('Access-Control-Allow-Origin', '*');
+			res.setHeader('Access-Control-Allow-Methods', 'post');
+			res.setHeader('Access-Control-Max-Age', 5000);
 			res.writeHead(200);
 			res.end(`{"message": "success"}`);
 		} else if (data == 'power_sharp') {
@@ -43,6 +46,9 @@ const requestListener = function(req, res) {
 			console.log('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_VOLUMEUP');
 			exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_VOLUMEUP');
 			res.setHeader("Content-Type", "application/json");
+			res.setHeader('Access-Control-Allow-Origin', '*');
+			res.setHeader('Access-Control-Allow-Methods', 'post');
+			res.setHeader('Access-Control-Max-Age', 5000);
 			res.writeHead(200);
 			res.end(`{"message": "success"}`);
 		} else if (data == 'vol_15') {
@@ -73,13 +79,7 @@ const requestListener = function(req, res) {
 	})
 };
 
-const server = http.createServer((requestListener) => {
-	const headers = {
-		'Access-Control-Allow-Origin': '*',
-		'Access-Control-Allow-Methods': 'POST',
-		'Access-Control-Max-Age': 5000,
-	};
-});
+const server = http.createServer(requestListener);
 server.listen(port, () => {
 	console.log(`Server is running on http://${host}:${port}`);
 });
