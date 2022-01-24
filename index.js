@@ -1,4 +1,5 @@
 const http = require("http");
+const cors = require("cors");
 const {
 	exec
 } = require('child_process');
@@ -73,7 +74,13 @@ const requestListener = function(req, res) {
 	})
 };
 
-const server = http.createServer(requestListener);
+const server = http.createServer((requestListener) => {
+	const headers = {
+		'Access-Control-Allow-Origin': '*',
+		'Access-Control-Allow-Methods': 'POST',
+		'Access-Control-Max-Age': 5000,
+	};
+});
 server.listen(port, () => {
 	console.log(`Server is running on http://${host}:${port}`);
 });
