@@ -34,6 +34,22 @@ const requestListener = function(req, res) {
 			res.setHeader('Access-Control-Max-Age', 5000);
 			res.writeHead(200);
 			res.end(`{"message": "success"}`);
+		} else if (data == 'lg_serial_off') {
+			exec(`echo 'ka 01 00' > /dev/ttyS0`);
+			res.setHeader("Content-Type", "application/json");
+			res.setHeader('Access-Control-Allow-Origin', '*');
+			res.setHeader('Access-Control-Allow-Methods', 'post');
+			res.setHeader('Access-Control-Max-Age', 5000);
+			res.writeHead(200);
+			res.end(`{"message": "success"}`);
+		} else if (data == 'lg_serial_on') {
+			exec(`echo 'ka 01 01' > /dev/ttyS0`);
+			res.setHeader("Content-Type", "application/json");
+			res.setHeader('Access-Control-Allow-Origin', '*');
+			res.setHeader('Access-Control-Allow-Methods', 'post');
+			res.setHeader('Access-Control-Max-Age', 5000);
+			res.writeHead(200);
+			res.end(`{"message": "success"}`);
 		} else if (data == 'power_and_vol') {
 			console.log('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
 			exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
