@@ -1,0 +1,13 @@
+[Unit]
+Description=Kiosk Service
+After=network.target
+
+[Service]
+ExecStart=/home/rock/DigitalSignageServer/kiosk.sh
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=rock
+
+[Install]
+WantedBy=multi-user.target
