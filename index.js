@@ -34,16 +34,21 @@ const requestListener = function(req, res) {
 			res.setHeader('Access-Control-Max-Age', 5000);
 			res.writeHead(200);
 			res.end(`{"message": "success"}`);
-		} else if (data == 'lg_serial_off') {
-			exec(`echo 'ka 01 00' > /dev/ttyS0`);
+		} else if (data == 'lg_off') {
+			let client = new net.Socket();
+			client.connect(port, 'ip', function() {
+				console.log('Connected');
+				client.write('ka 002 00');
+			});
+			client.destroy();
 			res.setHeader("Content-Type", "application/json");
 			res.setHeader('Access-Control-Allow-Origin', '*');
 			res.setHeader('Access-Control-Allow-Methods', 'post');
 			res.setHeader('Access-Control-Max-Age', 5000);
 			res.writeHead(200);
 			res.end(`{"message": "success"}`);
-		} else if (data == 'lg_serial_on') {
-			exec(`echo 'ka 01 01' > /dev/ttyS0`);
+		} else if (data == 'lg_on') {
+			exec(`wakeonlan <mac here>`);
 			res.setHeader("Content-Type", "application/json");
 			res.setHeader('Access-Control-Allow-Origin', '*');
 			res.setHeader('Access-Control-Allow-Methods', 'post');
