@@ -35,12 +35,7 @@ const requestListener = function(req, res) {
 			res.writeHead(200);
 			res.end(`{"message": "success"}`);
 		} else if (data == 'lg_off') {
-			let client = new net.Socket();
-			client.connect(port, 'ip', function() {
-				console.log('Connected');
-				client.write('ka 002 00');
-			});
-			client.destroy();
+			exec('php /home/rock/DigitalSignageServer/lg_off.php');
 			res.setHeader("Content-Type", "application/json");
 			res.setHeader('Access-Control-Allow-Origin', '*');
 			res.setHeader('Access-Control-Allow-Methods', 'post');
