@@ -100,6 +100,10 @@ const requestListener = function(req, res) {
 			res.setHeader('Access-Control-Allow-Origin', '*');
 			res.setHeader('Access-Control-Allow-Methods', 'post');
 			res.setHeader('Access-Control-Max-Age', 5000);
+			res.setHeader("Content-Type", "application/json");
+			res.setHeader('Access-Control-Allow-Origin', '*');
+			res.setHeader('Access-Control-Allow-Methods', 'post');
+			res.setHeader('Access-Control-Max-Age', 5000);
 			res.writeHead(200);
 			res.end(`{"message": "success"}`);
 		} else {
