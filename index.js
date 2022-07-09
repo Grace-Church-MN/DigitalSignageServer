@@ -7,6 +7,9 @@ const host = 'localhost';
 const port = 7000;
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
+// true = input on Digital Signage; false = input on CCTV/Airtame //
+let currentInput = true;
+
 const requestListener = function(req, res) {
 	let data = '';
 	req.on('data', chunk => {
@@ -100,6 +103,26 @@ const requestListener = function(req, res) {
 			res.setHeader('Access-Control-Allow-Origin', '*');
 			res.setHeader('Access-Control-Allow-Methods', 'post');
 			res.setHeader('Access-Control-Max-Age', 5000);
+			res.writeHead(200);
+			res.end(`{"message": "success"}`);
+		} else if (data == 'input') {
+			console.log('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO INPUT');
+			if (currentInput) {
+				exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO INPUT');
+				await sleep(500);
+				exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO INPUT');
+				currentInput = false;
+			} else {
+				exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO INPUT');
+				await sleep(500);
+				exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO INPUT');
+				await sleep(500);
+				exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO INPUT');
+				await sleep(500);
+				exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO INPUT');
+				currentInput = true
+			}
+
 			res.setHeader("Content-Type", "application/json");
 			res.setHeader('Access-Control-Allow-Origin', '*');
 			res.setHeader('Access-Control-Allow-Methods', 'post');
