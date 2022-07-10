@@ -1,0 +1,13 @@
+[Unit]
+Description=Digital Signage Service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/rock/DigitalSignageServer/ds.py
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=rock
+
+[Install]
+WantedBy=multi-user.target
