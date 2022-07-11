@@ -76,7 +76,7 @@ def process_event(tmpAssignment):
 
 if __name__ == '__main__':
 
-                f = open('cred.json','r')
+                f = open('/home/rock/DigitalSignageServer/cred.json','r')
                 cred = json.load(f)
                 print(cred['DisplayID'])
                 f.close()
