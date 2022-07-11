@@ -26,8 +26,8 @@ def process_event(tmpAssignment):
         global delay
         global tabProcess
         global tabPid
-        os.system('killall -9 firefox')
-        os.system('killall -9 chrome')
+        os.system('pkill -f firefox')
+        os.system('pkill -f chromium')
         if tmpAssignment['Video']:
                 assignments = []
                 urls = ''
@@ -108,5 +108,6 @@ if __name__ == '__main__':
 
                 except KeyboardInterrupt:
                                 print("\n[INFO] cleaning up...")
-                                os.system('killall -9 firefox')
-                                os.system('killall -9 chrome')
+                                os.system('pkill -f firefox')
+                                os.system('pkill -f chromium')
+                                os.system('rm /home/rock/DigitalSignageServer/tmp/*')
