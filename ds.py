@@ -30,27 +30,12 @@ def process_event(tmpAssignment):
         os.system('pkill -f chromium')
         if tmpAssignment['Video']:
                 assignments = []
-                urls = ''
-                delay = tmpAssignment['Delay']
-                for val in tmpAssignment['URLS']:
-                        assignments.append(val)
-                        urls+='"'
-                        urls+=val
-                        urls+='" '
-                command = 'export DISPLAY=:0 && firefox --private '+(urls)
+                assignments.append(tmpAssignment["URLS"][0])
+                os.system('wget "'+tmpAssignment["URLS"][0]+'" -O /home/rock/DigitalSignageServer/tmp/video.mp4')
+                command = 'export DISPLAY=:0 && firefox --private "file:///home/rock/DigitalSignageServer/video.html"'
                 subprocess.Popen(command, shell=True)
                 time.sleep(2.0)
                 subprocess.Popen("export DISPLAY=:0.0 && xdotool key F11", shell=True)
-
-                if tabProcess:
-                        if tabProcess.is_alive:
-                                os.kill(int(tabPid), signal.SIGKILL)
-                if len(tmpAssignment["URLS"]) > 1:
-                        tabProcess = Process(target=tabScreen,args=[delay],daemon=True,name='TabProcess')
-                        tabProcess.start()
-                        print(tabProcess.pid)
-                        tabPid = tabProcess.pid
-#                       tabProcess.join()
         else:
                 assignments = []
                 urls = ''
