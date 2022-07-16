@@ -63,7 +63,6 @@ if __name__ == '__main__':
 
                 f = open('/home/rock/DigitalSignageServer/cred.json','r')
                 cred = json.load(f)
-                print(cred['DisplayID'])
                 f.close()
 
                 apiBase = 'https://api.grace.church/v1/'
