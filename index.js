@@ -17,27 +17,7 @@ const requestListener = function(req, res) {
 	})
 	req.on('end', async () => {
 
-		if (data == 'power') {
-			console.log('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
-			exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
-			await sleep(200);
-			exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
-			res.setHeader("Content-Type", "application/json");
-			res.setHeader('Access-Control-Allow-Origin', '*');
-			res.setHeader('Access-Control-Allow-Methods', 'post');
-			res.setHeader('Access-Control-Max-Age', 5000);
-			res.writeHead(200);
-			res.end(`{"message": "success"}`);
-		} else if (data == 'power_sharp') {
-			console.log('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
-			exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
-			res.setHeader("Content-Type", "application/json");
-			res.setHeader('Access-Control-Allow-Origin', '*');
-			res.setHeader('Access-Control-Allow-Methods', 'post');
-			res.setHeader('Access-Control-Max-Age', 5000);
-			res.writeHead(200);
-			res.end(`{"message": "success"}`);
-		} else if (data == 'lg_off') {
+		if (data == 'lg_off') {
 			exec('php /home/rock/DigitalSignageServer/lg_off.php');
 			res.setHeader("Content-Type", "application/json");
 			res.setHeader('Access-Control-Allow-Origin', '*');
@@ -47,82 +27,6 @@ const requestListener = function(req, res) {
 			res.end(`{"message": "success"}`);
 		} else if (data == 'lg_on') {
 			exec(`wakeonlan <mac here>`);
-			res.setHeader("Content-Type", "application/json");
-			res.setHeader('Access-Control-Allow-Origin', '*');
-			res.setHeader('Access-Control-Allow-Methods', 'post');
-			res.setHeader('Access-Control-Max-Age', 5000);
-			res.writeHead(200);
-			res.end(`{"message": "success"}`);
-		} else if (data == 'power_and_vol') {
-			console.log('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
-			exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_POWER');
-			await sleep(10000);
-			for (let i = 0; i < 30; i++) {
-				exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_VOLUMEUP');
-				await sleep(200);
-			}
-			res.setHeader("Content-Type", "application/json");
-			res.setHeader('Access-Control-Allow-Origin', '*');
-			res.setHeader('Access-Control-Allow-Methods', 'post');
-			res.setHeader('Access-Control-Max-Age', 5000);
-			res.writeHead(200);
-			res.end(`{"message": "success"}`);
-		} else if (data == 'vol_up') {
-			console.log('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_VOLUMEUP');
-			exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_VOLUMEUP');
-			res.setHeader("Content-Type", "application/json");
-			res.setHeader('Access-Control-Allow-Origin', '*');
-			res.setHeader('Access-Control-Allow-Methods', 'post');
-			res.setHeader('Access-Control-Max-Age', 5000);
-			res.writeHead(200);
-			res.end(`{"message": "success"}`);
-		} else if (data == 'vol_15') {
-			for (let i = 0; i < 15; i++) {
-				exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_VOLUMEUP');
-				await sleep(200);
-			}
-			res.setHeader("Content-Type", "application/json");
-			res.setHeader('Access-Control-Allow-Origin', '*');
-			res.setHeader('Access-Control-Allow-Methods', 'post');
-			res.setHeader('Access-Control-Max-Age', 5000);
-			res.writeHead(200);
-			res.end(`{"message": "success"}`);
-		} else if (data == 'vol_down') {
-			console.log('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO VOL_DWN');
-			exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO VOL_DWN');
-			res.setHeader("Content-Type", "application/json");
-			res.setHeader('Access-Control-Allow-Origin', '*');
-			res.setHeader('Access-Control-Allow-Methods', 'post');
-			res.setHeader('Access-Control-Max-Age', 5000);
-			res.writeHead(200);
-			res.end(`{"message": "success"}`);
-		} else if (data == 'mute') {
-			console.log('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_MUTE');
-			exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO KEY_MUTE');
-			res.setHeader("Content-Type", "application/json");
-			res.setHeader('Access-Control-Allow-Origin', '*');
-			res.setHeader('Access-Control-Allow-Methods', 'post');
-			res.setHeader('Access-Control-Max-Age', 5000);
-			res.writeHead(200);
-			res.end(`{"message": "success"}`);
-		} else if (data == 'input') {
-			console.log('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO INPUT');
-			if (currentInput) {
-				exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO INPUT');
-				await sleep(500);
-				exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO INPUT');
-				currentInput = false;
-			} else {
-				exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO INPUT');
-				await sleep(500);
-				exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO INPUT');
-				await sleep(500);
-				exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO INPUT');
-				await sleep(500);
-				exec('irsend SEND_ONCE --device=/var/run/lirc/lircd VIZIO INPUT');
-				currentInput = true
-			}
-
 			res.setHeader("Content-Type", "application/json");
 			res.setHeader('Access-Control-Allow-Origin', '*');
 			res.setHeader('Access-Control-Allow-Methods', 'post');
