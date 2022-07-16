@@ -34,7 +34,7 @@ def process_event(tmpAssignment):
                 os.system('wget "'+tmpAssignment["URLS"][0]+'" -O /home/rock/DigitalSignageServer/tmp/video.mp4')
                 command = 'export DISPLAY=:0 && firefox --private "file:///home/rock/DigitalSignageServer/video.html"'
                 subprocess.Popen(command, shell=True)
-                time.sleep(2.0)
+                time.sleep(3.0)
                 subprocess.Popen("export DISPLAY=:0.0 && xdotool key F11", shell=True)
         else:
                 assignments = []
