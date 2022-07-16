@@ -88,7 +88,7 @@ if __name__ == '__main__':
                                 else:
                                         process_event(tmpAssignment)
 
-                                time.sleep(6.0)
+                                time.sleep(60.0)
 
                 except KeyboardInterrupt:
                                 print("\n[INFO] cleaning up...")
