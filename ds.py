@@ -33,6 +33,7 @@ def process_event(tmpAssignment):
                 assignments.append(tmpAssignment["URLS"][0])
                 os.system('wget "'+tmpAssignment["URLS"][0]+'" -O /home/rock/DigitalSignageServer/tmp/video.mp4')
                 command = 'export DISPLAY=:0 && firefox --private --kiosk "file:///home/rock/DigitalSignageServer/video.html"'
+                subprocess.Popen(command, shell=True)
         else:
                 assignments = []
                 urls = ''
