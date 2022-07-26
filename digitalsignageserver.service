@@ -4,7 +4,7 @@ After=network-online.target
 Wants=network-online.target
 
 [Service]
-ExecStart=/home/rock/.nvm/versions/node/v14.19.1/bin/node /home/rock/DigitalSignageServer/index.js
+ExecStart=/home/rock/.nvm/versions/node/v14.20.0/bin/node /home/rock/DigitalSignageServer/index.js
 StandardOutput=inherit
 StandardError=inherit
 Restart=always
