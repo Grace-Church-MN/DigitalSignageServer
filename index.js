@@ -27,6 +27,8 @@ const requestListener = function(req, res) {
 			res.end(`{"message": "success"}`);
 		} else if (data == 'lg_on') {
 			exec(`wakeonlan <mac here>`);
+			await sleep(5000);
+			exec('export DISPLAY=:0; xrandr --output HDMI-1 --rotate left')
 			res.setHeader("Content-Type", "application/json");
 			res.setHeader('Access-Control-Allow-Origin', '*');
 			res.setHeader('Access-Control-Allow-Methods', 'post');
