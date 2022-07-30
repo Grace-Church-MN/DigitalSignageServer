@@ -26,13 +26,13 @@ def process_event(tmpAssignment):
         global delay
         global tabProcess
         global tabPid
-        os.system('pkill -f firefox')
-        os.system('pkill -f chromium')
+    #    os.system('pkill -f firefox')
+        os.system('pkill -f chromium-browser')
         if tmpAssignment['Video']:
                 assignments = []
                 assignments.append(tmpAssignment["URLS"][0])
                 os.system('wget "'+tmpAssignment["URLS"][0]+'" -O /home/pi/DigitalSignageServer/tmp/video.mp4')
-                command = 'export DISPLAY=:0 && firefox --private --kiosk "file:///home/pi/DigitalSignageServer/video.html"'
+                command = 'export DISPLAY=:0 && --kiosk --new-window --start-fullscreen --disable-session-crashed-bubble --disable-infobars --window-size=1920,1080 --window-position=0,0 --incognito "file:///home/pi/DigitalSignageServer/video.html"'
                 subprocess.Popen(command, shell=True)
         else:
                 assignments = []
@@ -43,7 +43,7 @@ def process_event(tmpAssignment):
                         urls+='"'
                         urls+=val
                         urls+='" '
-                command = 'export DISPLAY=:0 && chromium --kiosk --new-window --start-fullscreen --disable-session-crashed-bubble --disable-infobars --window-size=1920,1080 --window-position=0,0 --incognito '+(urls)
+                command = 'export DISPLAY=:0 && /usr/bin/chromium-browser --kiosk --new-window --start-fullscreen --disable-session-crashed-bubble --disable-infobars --window-size=1920,1080 --window-position=0,0 --incognito '+(urls)
                 subprocess.Popen(command, shell=True)
 
                 if tabProcess:
@@ -90,6 +90,6 @@ if __name__ == '__main__':
 
                 except KeyboardInterrupt:
                                 print("\n[INFO] cleaning up...")
-                                os.system('pkill -f firefox')
-                                os.system('pkill -f chromium')
+                            #    os.system('pkill -f firefox')
+                                os.system('pkill -f chromium-browser')
                                 os.system('rm /home/pi/DigitalSignageServer/tmp/*')
