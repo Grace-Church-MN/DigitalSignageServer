@@ -90,6 +90,4 @@ if __name__ == '__main__':
 
                 except KeyboardInterrupt:
                                 print("\n[INFO] cleaning up...")
-                                os.system('pkill -f firefox')
-                                os.system('pkill -f chromium')
                                 os.system('rm /home/rock/DigitalSignageServer/tmp/*')
