@@ -43,7 +43,7 @@ def process_event(tmpAssignment):
                         urls+='"'
                         urls+=val
                         urls+='" '
-                command = 'export DISPLAY=:0 && chromium --kiosk --new-window --start-fullscreen --disable-session-crashed-bubble --disable-infobars --window-size=1920,1080 --window-position=0,0 --incognito '+(urls)
+                command = 'export DISPLAY=:0 && chromium --kiosk --new-window --start-fullscreen --disable-session-crashed-bubble --disable-infobars --window-size=1920,1080 --window-position=0,0 --disable-restore-session-state --disable-features=SignIn --incognito '+(urls)
                 subprocess.Popen(command, shell=True)
 
                 if tabProcess:
