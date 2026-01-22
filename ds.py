@@ -44,7 +44,7 @@ def process_event(tmpAssignment):
                         urls+=val
                         urls+='" '
                 command = 'export DISPLAY=:0 && chromium --kiosk --incognito --no-first-run --no-default-browser-check --disable-session-crashed-bubble --disable-translate --disable-infobars --disable-background-networking --disable-component-update --start-maximized --user-data-dir=/tmp/chrome-kiosk '+(urls)
-				
+
                 subprocess.Popen(command, shell=True)
 
                 if tabProcess:
